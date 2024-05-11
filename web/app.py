@@ -24,12 +24,12 @@ def home():
 
 @app.route("/resultado", methods=["POST"])
 def resultado():
-    palavra_digitada = request.form["valor"]
+    palavra_digitada = request.form["palavra"]
     palavra_aleatoria = request.form["palavra_aleatoria"]
     if palavra_digitada == palavra_aleatoria:
         return render_template("resultado.html", acerto=True)
     else:
-        return render_template("resultado.html", acerto=False)
+        return render_template("resultado.html", acerto=False, palavra_aleatoria=palavra_aleatoria)
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
