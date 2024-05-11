@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import random
+from icecream import ic
 
 from challenge.challenge import Challenge
 
@@ -28,12 +29,14 @@ def home():
 
 @app.route("/resultado", methods=["POST"])
 def resultado():
-    palavra_digitada = request.form["palavra"]
-    palavra_aleatoria = request.form["palavra_aleatoria"]
-    if palavra_digitada == palavra_aleatoria:
+    user_answer = request.form["user-answer"]
+    challenge_answer = eval(request.form["challenge-answer"])[1]
+    ic(user_answer, challenge_answer)
+
+    if user_answer == challenge_answer:
         return render_template("resultado.html", acerto=True)
     else:
-        return render_template("resultado.html", acerto=False, challenge_view=palavra_aleatoria)
+        return render_template("resultado.html", acerto=False, challenge_view=challenge_answer)
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
