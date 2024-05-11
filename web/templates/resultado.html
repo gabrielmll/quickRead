@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+</head>
+<body>
+    <h1>Resultado</h1>
+    {% if acerto %}
+        <p>Você acertou!</p>
+    {% else %}
+        <p>Você errou. A palavra era "{{ palavra_aleatoria }}".</p>
+    {% endif %}
+    <a href="/">Tentar novamente</a>
+</body>
+</html>

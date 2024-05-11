@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Palavra Aleatória</title>
+</head>
+<body>
+    <h1>Digite a palavra que você viu:</h1>
+    <div align="center">
+        <p id="palavra" font-size="10px">{{ palavra }}</p>
+        <script>
+            setTimeout(function() {
+                document.getElementById("palavra").style.visibility = "hidden";
+            }, 3000);
+        </script>
+    </div>
+    <br>
+    <br>
+    <div align="center">
+        <form action="/resultado" method="post">
+            <input type="text" name="palavra">
+            <input type="hidden" name="palavra_aleatoria" value="{{ palavra }}">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
