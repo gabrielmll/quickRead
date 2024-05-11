@@ -7,7 +7,7 @@
 <body>
     <h1>Digite a palavra que você viu:</h1>
     <div align="center">
-        <p id="palavra" font-size="10px">{{ palavra }}</p>
+        <p id="palavra" font-size="10px">{{ challenge_view[0] }}</p>
         <script>
             setTimeout(function() {
                 document.getElementById("palavra").style.visibility = "hidden";
@@ -19,7 +19,7 @@
     <div align="center">
         <form action="/resultado" method="post">
             <input type="text" name="palavra">
-            <input type="hidden" name="palavra_aleatoria" value="{{ palavra }}">
+            <input type="hidden" name="palavra_aleatoria" value="{{ challenge_view }}">
             <button type="submit">Enviar</button>
         </form>
     </div>

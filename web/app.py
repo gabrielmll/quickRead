@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import random
 
+from challenge.challenge import Challenge
+
 app = Flask(__name__)
 
 palavras = ["banana", "casa", "gato", "mesa", "livro"]
@@ -20,7 +22,9 @@ frases = [
 @app.route("/")
 def home():
     palavra_aleatoria = random.choice(palavras)
-    return render_template("index.html", palavra=palavra_aleatoria)
+    challenge = Challenge(palavra_aleatoria, palavra_aleatoria)
+    print(challenge.get_challenge())
+    return render_template("index.html", challenge_view=challenge.get_challenge())
 
 @app.route("/resultado", methods=["POST"])
 def resultado():
@@ -29,7 +33,7 @@ def resultado():
     if palavra_digitada == palavra_aleatoria:
         return render_template("resultado.html", acerto=True)
     else:
-        return render_template("resultado.html", acerto=False, palavra_aleatoria=palavra_aleatoria)
+        return render_template("resultado.html", acerto=False, challenge_view=palavra_aleatoria)
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
